@@ -1,0 +1,24 @@
+{
+    "name": "@apify/oxlint-config",
+    "version": "0.0.1",
+    "description": "Apify oxlint preset to be shared between projects.",
+    "repository": {
+        "url": "https://github.com/apify/apify-oxlint-config"
+    },
+    "main": "index.json",
+    "exports": {
+        ".": "./index.json",
+        "./index.json": "./index.json"
+    },
+    "files": [
+        "index.json"
+    ],
+    "scripts": {
+        "test": "echo \"No tests specified\" && exit 0"
+    },
+    "peerDependencies": {
+        "oxlint": ">=1.60.0"
+    },
+    "author": "Apify team <info@apify.com>",
+    "license": "Apache-2.0"
+}
