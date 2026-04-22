@@ -1,53 +1,71 @@
 {
     "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
-    "plugins": ["typescript", "import", "unicorn", "jest", "promise", "react", "react-hooks"],
+    "plugins": [
+        "typescript",
+        "import",
+        "unicorn",
+        "jest",
+        "promise",
+        "react",
+        "react-hooks"
+    ],
     "env": {
         "node": true,
         "browser": true,
         "es2022": true
-    },
-    "globals": {
-        "vi": "readonly",
-        "describe": "readonly",
-        "it": "readonly",
-        "test": "readonly",
-        "expect": "readonly",
-        "beforeAll": "readonly",
-        "beforeEach": "readonly",
-        "afterAll": "readonly",
-        "afterEach": "readonly"
     },
     "rules": {
         "no-console": "error",
         "no-plusplus": "off",
         "no-await-in-loop": "off",
         "no-continue": "off",
-        "no-void": ["error", { "allowAsStatement": true }],
-        "no-use-before-define": ["error", {
-            "functions": false,
-            "classes": true,
-            "variables": true,
-            "allowNamedExports": false
-        }],
-        "prefer-destructuring": ["error", {
-            "VariableDeclarator": { "array": false, "object": true },
-            "AssignmentExpression": { "array": false, "object": false }
-        }, {
-            "enforceForRenamedProperties": false
-        }],
+        "no-void": [
+            "error",
+            {
+                "allowAsStatement": true
+            }
+        ],
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": true,
+                "variables": true,
+                "allowNamedExports": false
+            }
+        ],
+        "prefer-destructuring": [
+            "error",
+            {
+                "VariableDeclarator": {
+                    "array": false,
+                    "object": true
+                },
+                "AssignmentExpression": {
+                    "array": false,
+                    "object": false
+                }
+            },
+            {
+                "enforceForRenamedProperties": false
+            }
+        ],
         "no-labels": "error",
         "guard-for-in": "error",
-        "import-js/no-extraneous-dependencies": ["error", {
-            "devDependencies": [
-                "**/vite.config.{js,ts,mjs,mts}",
-                "**/vitest.config.{js,ts,mjs,mts}",
-                "**/*.test.{js,ts,jsx,tsx}",
-                "**/*.spec.{js,ts,jsx,tsx}",
-                "**/{test,tests,integration_tests}/**/*.{js,ts,jsx,tsx,mjs,mts,cjs,cts}",
-                "**/.storybook/**/*.{js,ts,jsx,tsx}",
-                "**/*.stories.{js,jsx,ts,tsx}"
-            ]
-        }],
+        "import-js/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": [
+                    "**/vite.config.{js,ts,mjs,mts}",
+                    "**/vitest.config.{js,ts,mjs,mts}",
+                    "**/*.test.{js,ts,jsx,tsx}",
+                    "**/*.spec.{js,ts,jsx,tsx}",
+                    "**/{test,tests,integration_tests}/**/*.{js,ts,jsx,tsx,mjs,mts,cjs,cts}",
+                    "**/.storybook/**/*.{js,ts,jsx,tsx}",
+                    "**/*.stories.{js,jsx,ts,tsx}"
+                ]
+            }
+        ],
         "typescript/no-shadow": "error",
         "no-shadow": "off",
         "typescript/no-non-null-assertion": "off",
@@ -57,12 +75,15 @@
         "default-param-last": "off",
         "typescript/no-floating-promises": "error",
         "typescript/await-thenable": "error",
-        "typescript/no-misused-promises": ["error", {
-            "checksVoidReturn": {
-                "arguments": false,
-                "attributes": false
+        "typescript/no-misused-promises": [
+            "error",
+            {
+                "checksVoidReturn": {
+                    "arguments": false,
+                    "attributes": false
+                }
             }
-        }],
+        ],
         "typescript/promise-function-async": "error",
         "typescript/consistent-type-imports": "error",
         "typescript/array-type": "error",
@@ -73,10 +94,13 @@
         "typescript/no-confusing-non-null-assertion": "error",
         "typescript/prefer-includes": "error",
         "no-unused-vars": "off",
-        "typescript/no-unused-vars": ["error", {
-            "argsIgnorePattern": "^_",
-            "ignoreRestSiblings": true
-        }],
+        "typescript/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_",
+                "ignoreRestSiblings": true
+            }
+        ],
         "typescript/no-empty-function": "error",
         "no-empty-function": "off",
         "typescript/consistent-return": "error",
@@ -87,7 +111,6 @@
         "import/named": "off",
         "unicorn/prefer-node-protocol": "error",
         "unicorn/no-await-in-promise-methods": "error",
-
         "jest/require-to-throw-message": "off",
         "jest/prefer-snapshot-hint": "off",
         "typescript/unbound-method": "off",
@@ -128,7 +151,13 @@
     },
     "overrides": [
         {
-            "files": ["**/*.spec.*", "**/*.test.*", "**/test/**", "**/tests/**", "**/integration_tests/**"],
+            "files": [
+                "**/*.spec.*",
+                "**/*.test.*",
+                "**/test/**",
+                "**/tests/**",
+                "**/integration_tests/**"
+            ],
             "rules": {
                 "no-console": "off",
                 "typescript/no-inferrable-types": "off",
@@ -145,20 +174,28 @@
             }
         },
         {
-            "files": ["**/vite.config*.{ts,mts,js,mjs}", "**/vitest.config*.{ts,mts,js,mjs}", "**/jest.config*.{js,mjs}"],
+            "files": [
+                "**/vite.config*.{ts,mts,js,mjs}",
+                "**/vitest.config*.{ts,mts,js,mjs}",
+                "**/jest.config*.{js,mjs}"
+            ],
             "rules": {
                 "import/no-default-export": "off"
             }
         },
         {
-            "files": ["**/*.stories.{js,jsx,ts,tsx,mjs,cjs}"],
+            "files": [
+                "**/*.stories.{js,jsx,ts,tsx,mjs,cjs}"
+            ],
             "rules": {
                 "no-console": "off",
                 "import/no-default-export": "off"
             }
         },
         {
-            "files": ["**/integration_tests/**"],
+            "files": [
+                "**/integration_tests/**"
+            ],
             "rules": {
                 "jest/expect-expect": "off"
             }
