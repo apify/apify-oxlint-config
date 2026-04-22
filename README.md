@@ -36,9 +36,10 @@ npx oxlint --type-aware
 The shared config provides:
 
 - **Plugins** — `typescript`, `import`, `unicorn`, `jest`, `promise`, `react`, `react-hooks` (Rust-side, no install required).
-- **Globals** — `vi`, `describe`, `it`, `test`, `expect`, `beforeAll`, `beforeEach`, `afterAll`, `afterEach` (so test files don't need to import from vitest/jest).
 - **Rules** — the Apify house rules: `typescript/consistent-type-imports`, `typescript/no-floating-promises`, `unicorn/prefer-node-protocol`, `import/no-default-export`, `unicorn/no-await-in-promise-methods`, plus the curated `off` list of TypeScript strict rules we don't want.
 - **Overrides** — relaxed rules for test files, vite/jest/vitest config files, story files, and integration test directories.
+
+Test framework helpers (`describe`, `it`, `expect`, `vi`, ...) are intentionally **not** declared as globals — test files should import them directly from `vitest`/`@jest/globals` so editors, type-checkers and linters agree on what's in scope.
 
 ## What's NOT included
 
