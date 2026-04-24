@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 - 2026-04-24
+
+### Chores
+- Ship TypeScript declarations for the shared config (#3)
+
+
 ## 0.2.0 - 2026-04-24
 
 ### Features
