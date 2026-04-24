@@ -16,13 +16,21 @@ If you want type-aware rules (`typescript/no-floating-promises`, `typescript/awa
 npm install --save-dev oxlint-tsgolint
 ```
 
-Add an `.oxlintrc.json` at your project root that extends the shared config. oxlint's `extends` only accepts file paths (not bare specifiers), so reach into `node_modules` directly:
+Add an `oxlint.config.ts` (or `.js`/`.mjs`) at your project root and spread the preset into it:
 
-```jsonc
-{
-    "$schema": "./node_modules/oxlint/configuration_schema.json",
-    "extends": ["./node_modules/@apify/oxlint-config/index.json"]
-}
+```ts
+import { defineConfig } from 'oxlint';
+import sharedConfig from '@apify/oxlint-config';
+
+export default defineConfig({
+    ...sharedConfig,
+    // local plugin additions, e.g. for React projects:
+    plugins: [...sharedConfig.plugins, 'react'],
+    overrides: [
+        ...sharedConfig.overrides,
+        // local overrides
+    ],
+});
 ```
 
 Run lint:
@@ -35,7 +43,7 @@ npx oxlint --type-aware
 
 The shared config provides:
 
-- **Plugins** — `typescript`, `import`, `unicorn`, `jest`, `promise` (Rust-side, no install required). React plugins (`react`, `react-hooks`) are intentionally **not** included; enable them in your own `.oxlintrc.json` if your project uses React.
+- **Plugins** — `typescript`, `import`, `unicorn`, `jest`, `promise` (Rust-side, no install required). React plugins are intentionally **not** included; consumers add `'react'` to `plugins` if their project uses React. (Note: oxlint's `react` plugin already covers React Hooks rules; there's no separate `react-hooks` plugin.)
 - **Rules** — the Apify house rules: `typescript/consistent-type-imports`, `typescript/no-floating-promises`, `unicorn/prefer-node-protocol`, `import/no-default-export`, `unicorn/no-await-in-promise-methods`, plus the curated `off` list of TypeScript strict rules we don't want.
 - **Overrides** — relaxed rules for test files, vite/jest/vitest config files, story files, and integration test directories.
 
@@ -43,30 +51,30 @@ Test framework helpers (`describe`, `it`, `expect`, `vi`, ...) are intentionally
 
 ## What's NOT included
 
-The shared config intentionally does **not** declare `jsPlugins` (the JS-side plugins like `eslint-plugin-storybook`, `eslint-plugin-cypress`, `eslint-plugin-playwright`, `@tanstack/eslint-plugin-query`). Those carry their own peer dependencies and are project-specific. Add them in your own `.oxlintrc.json` if you need them:
+The shared config does **not** declare `jsPlugins` (the JS-side plugins like `eslint-plugin-storybook`, `eslint-plugin-cypress`, `eslint-plugin-playwright`, `@tanstack/eslint-plugin-query`). Those carry their own peer dependencies and are project-specific. Add them in your own config:
 
-```jsonc
-{
-    "$schema": "./node_modules/oxlint/configuration_schema.json",
-    "extends": ["./node_modules/@apify/oxlint-config/index.json"],
-    "jsPlugins": [
-        { "name": "storybook", "specifier": "eslint-plugin-storybook" },
-        { "name": "playwright", "specifier": "eslint-plugin-playwright" }
-    ]
-}
+```ts
+export default defineConfig({
+    ...sharedConfig,
+    jsPlugins: [
+        { name: 'storybook', specifier: 'eslint-plugin-storybook' },
+        { name: 'playwright', specifier: 'eslint-plugin-playwright' },
+    ],
+});
 ```
 
 ## Overriding rules
 
-oxlint merges configs from extends-first to consumer-last; the consumer wins. Tighten or loosen a rule in your `.oxlintrc.json`:
+Spread the preset and add your own `rules` block — yours win over the preset:
 
-```jsonc
-{
-    "extends": ["./node_modules/@apify/oxlint-config/index.json"],
-    "rules": {
-        "no-console": "off"
-    }
-}
+```ts
+export default defineConfig({
+    ...sharedConfig,
+    rules: {
+        ...sharedConfig.rules,
+        'no-console': 'off',
+    },
+});
 ```
 
 ## License
