@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 - 2026-04-24
+
+### Features
+- Add defineConfig helper that pre-merges the preset (#4)
+
+
 ## 0.2.1 - 2026-04-24
 
 ### Chores
