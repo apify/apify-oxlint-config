@@ -7,11 +7,16 @@
     },
     "type": "module",
     "main": "index.js",
+    "types": "./index.d.ts",
     "exports": {
-        ".": "./index.js"
+        ".": {
+            "types": "./index.d.ts",
+            "default": "./index.js"
+        }
     },
     "files": [
-        "index.js"
+        "index.js",
+        "index.d.ts"
     ],
     "scripts": {
         "test": "echo \"No tests specified\" && exit 0"
