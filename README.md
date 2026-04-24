@@ -16,7 +16,23 @@ If you want type-aware rules (`typescript/no-floating-promises`, `typescript/awa
 npm install --save-dev oxlint-tsgolint
 ```
 
-Add an `oxlint.config.ts` (or `.js`/`.mjs`) at your project root and spread the preset into it:
+Add an `oxlint.config.ts` (or `.js`/`.mjs`) at your project root and call the package's `defineConfig` with any project-local additions:
+
+```ts
+import { defineConfig } from '@apify/oxlint-config';
+
+export default defineConfig({
+    // local plugin additions, e.g. for React projects:
+    plugins: ['react'],
+    overrides: [
+        // local overrides
+    ],
+});
+```
+
+`defineConfig` merges your config on top of the Apify preset (arrays concatenated, objects shallow-merged with consumer winning) and returns a typed `OxlintConfig` that's safe to default-export under `composite` / `--isolatedDeclarations` TypeScript projects.
+
+If you'd rather spread the preset manually, the raw config is still the package's default export:
 
 ```ts
 import { defineConfig } from 'oxlint';
@@ -24,12 +40,8 @@ import sharedConfig from '@apify/oxlint-config';
 
 export default defineConfig({
     ...sharedConfig,
-    // local plugin additions, e.g. for React projects:
     plugins: [...sharedConfig.plugins, 'react'],
-    overrides: [
-        ...sharedConfig.overrides,
-        // local overrides
-    ],
+    overrides: [...sharedConfig.overrides, /* local */],
 });
 ```
 
@@ -55,7 +67,6 @@ The shared config does **not** declare `jsPlugins` (the JS-side plugins like `es
 
 ```ts
 export default defineConfig({
-    ...sharedConfig,
     jsPlugins: [
         { name: 'storybook', specifier: 'eslint-plugin-storybook' },
         { name: 'playwright', specifier: 'eslint-plugin-playwright' },
@@ -65,13 +76,11 @@ export default defineConfig({
 
 ## Overriding rules
 
-Spread the preset and add your own `rules` block — yours win over the preset:
+Add a `rules` block — your entries win over the preset:
 
 ```ts
 export default defineConfig({
-    ...sharedConfig,
     rules: {
-        ...sharedConfig.rules,
         'no-console': 'off',
     },
 });
