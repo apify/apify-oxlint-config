@@ -1,21 +1,23 @@
+import { defineConfig as oxlintDefineConfig } from 'oxlint';
+
 /**
  * Shared oxlint preset for Apify projects.
  *
- * Spread it into your `oxlint.config.{ts,js,mjs}`:
+ * Most consumers should call {@link defineConfig} below — it merges the
+ * preset with project-local additions and returns a typed `OxlintConfig`,
+ * which avoids declaration-emit issues in `composite` TS projects:
  *
- *     import { defineConfig } from 'oxlint';
- *     import sharedConfig from '@apify/oxlint-config';
+ *     import { defineConfig } from '@apify/oxlint-config';
  *
  *     export default defineConfig({
- *         ...sharedConfig,
- *         plugins: [...sharedConfig.plugins, 'react'],
- *         overrides: [
- *             ...sharedConfig.overrides,
- *             // local overrides go here
- *         ],
+ *         plugins: ['react'],
+ *         overrides: [{ files: [...], rules: {...} }],
  *     });
+ *
+ * The raw preset is still exported as the default if you want to spread
+ * manually.
  */
-export default {
+const sharedConfig = {
     plugins: ['typescript', 'import', 'unicorn', 'jest', 'promise'],
     env: {
         node: true,
@@ -167,3 +169,32 @@ export default {
         },
     ],
 };
+
+export default sharedConfig;
+
+/**
+ * Wraps oxlint's `defineConfig` to merge a project-local config on top of
+ * the Apify preset. Arrays (`plugins`, `overrides`) are concatenated;
+ * objects (`rules`, `env`) are shallow-merged with the consumer winning;
+ * everything else (`ignorePatterns`, `jsPlugins`, `categories`, …) is
+ * passed through unchanged.
+ *
+ * @param {Partial<import('oxlint').OxlintConfig>} [overrides]
+ * @returns {import('oxlint').OxlintConfig}
+ */
+export function defineConfig(overrides = {}) {
+    return oxlintDefineConfig({
+        ...sharedConfig,
+        ...overrides,
+        plugins: overrides.plugins
+            ? [...sharedConfig.plugins, ...overrides.plugins]
+            : sharedConfig.plugins,
+        overrides: overrides.overrides
+            ? [...sharedConfig.overrides, ...overrides.overrides]
+            : sharedConfig.overrides,
+        rules: overrides.rules
+            ? { ...sharedConfig.rules, ...overrides.rules }
+            : sharedConfig.rules,
+        env: overrides.env ? { ...sharedConfig.env, ...overrides.env } : sharedConfig.env,
+    });
+}

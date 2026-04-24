@@ -22,7 +22,7 @@
         "test": "echo \"No tests specified\" && exit 0"
     },
     "peerDependencies": {
-        "oxlint": ">=1.60.0"
+        "oxlint": "^1.61.0"
     },
     "author": "Apify team <info@apify.com>",
     "license": "Apache-2.0"
