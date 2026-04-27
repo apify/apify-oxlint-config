@@ -55,7 +55,7 @@ npx oxlint --type-aware
 
 The shared config provides:
 
-- **Plugins** — `typescript`, `import`, `unicorn`, `jest`, `promise` (Rust-side, no install required). React plugins are intentionally **not** included; consumers add `'react'` to `plugins` if their project uses React. (Note: oxlint's `react` plugin already covers React Hooks rules; there's no separate `react-hooks` plugin.)
+- **Plugins** — `typescript`, `import`, `unicorn`, `jest`, `vitest`, `promise` (Rust-side, no install required). Both `jest` and `vitest` are enabled because vitest's API is jest-compatible — most of the test best-practices we care about live in the `jest/*` rules and apply equally to vitest tests. The `vitest` plugin adds a few framework-specific rules (e.g. `vitest/hoisted-apis-on-top`, `vitest/no-conditional-tests`) on top. React plugins are intentionally **not** included; consumers add `'react'` to `plugins` if their project uses React. (Note: oxlint's `react` plugin already covers React Hooks rules; there's no separate `react-hooks` plugin.)
 - **Rules** — the Apify house rules: `typescript/consistent-type-imports`, `typescript/no-floating-promises`, `unicorn/prefer-node-protocol`, `import/no-default-export`, `unicorn/no-await-in-promise-methods`, plus the curated `off` list of TypeScript strict rules we don't want.
 - **Overrides** — relaxed rules for test files, vite/jest/vitest config files, story files, and integration test directories.
 

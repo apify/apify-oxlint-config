@@ -18,7 +18,7 @@ import { defineConfig as oxlintDefineConfig } from 'oxlint';
  * manually.
  */
 const sharedConfig = {
-    plugins: ['typescript', 'import', 'unicorn', 'jest', 'promise'],
+    plugins: ['typescript', 'import', 'unicorn', 'jest', 'vitest', 'promise'],
     env: {
         node: true,
         browser: true,
@@ -148,6 +148,8 @@ const sharedConfig = {
                 'jest/no-conditional-expect': 'error',
                 'jest/no-focused-tests': 'error',
                 'jest/valid-expect': 'off',
+                'vitest/hoisted-apis-on-top': 'error',
+                'vitest/no-conditional-tests': 'error',
                 'import/no-default-export': 'off',
             },
         },
