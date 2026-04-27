@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.3 - 2026-04-27
+
+### Features
+- Add vitest plugin alongside jest (#5)
+
+
 ## 0.2.2 - 2026-04-24
 
 ### Features
