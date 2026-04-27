@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.4 - 2026-04-27
+
+### Bug Fixes
+- Drop import-js/no-extraneous-dependencies until oxlint supports it natively (#8)
+- Turn off noisy/buggy vitest rules that the plugin auto-enables (#6)
+
+
 ## 0.2.3 - 2026-04-27
 
 ### Features
