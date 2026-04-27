@@ -44,20 +44,6 @@ const sharedConfig = {
         ],
         'no-labels': 'error',
         'guard-for-in': 'error',
-        'import-js/no-extraneous-dependencies': [
-            'error',
-            {
-                devDependencies: [
-                    '**/vite.config.{js,ts,mjs,mts}',
-                    '**/vitest.config.{js,ts,mjs,mts}',
-                    '**/*.test.{js,ts,jsx,tsx}',
-                    '**/*.spec.{js,ts,jsx,tsx}',
-                    '**/{test,tests,integration_tests}/**/*.{js,ts,jsx,tsx,mjs,mts,cjs,cts}',
-                    '**/.storybook/**/*.{js,ts,jsx,tsx}',
-                    '**/*.stories.{js,jsx,ts,tsx}',
-                ],
-            },
-        ],
         'typescript/no-shadow': 'error',
         'no-shadow': 'off',
         'typescript/no-non-null-assertion': 'off',
@@ -143,7 +129,6 @@ const sharedConfig = {
                 'typescript/await-thenable': 'off',
                 'typescript/no-floating-promises': 'off',
                 'typescript/no-misused-promises': 'off',
-                'import-js/no-extraneous-dependencies': 'off',
                 'jest/no-disabled-tests': 'error',
                 'jest/no-conditional-expect': 'error',
                 'jest/no-focused-tests': 'error',
