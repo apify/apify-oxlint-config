@@ -97,6 +97,20 @@ const sharedConfig = {
         'unicorn/no-await-in-promise-methods': 'error',
         'jest/require-to-throw-message': 'off',
         'jest/prefer-snapshot-hint': 'off',
+        // Vitest plugin auto-enables most of its rules at error level. Keep
+        // the few that catch real bugs and turn the noisy/opinionated/buggy
+        // ones off:
+        // - hoisted-apis-on-top: false-positive on `vi.mocked()`, which is
+        //   a TypeScript type-helper (not a hoisted API).
+        // - require-mock-type-parameters: too aggressive (every .mock() call
+        //   would need a type parameter); opt-in per project if desired.
+        // - consistent-each-for, warn-todo, require-local-test-context-for-
+        //   concurrent-snapshots: opinion / niche.
+        'vitest/hoisted-apis-on-top': 'off',
+        'vitest/require-mock-type-parameters': 'off',
+        'vitest/consistent-each-for': 'off',
+        'vitest/warn-todo': 'off',
+        'vitest/require-local-test-context-for-concurrent-snapshots': 'off',
         'typescript/unbound-method': 'off',
         'typescript/restrict-template-expressions': 'off',
         'typescript/no-useless-default-assignment': 'off',
@@ -148,8 +162,6 @@ const sharedConfig = {
                 'jest/no-conditional-expect': 'error',
                 'jest/no-focused-tests': 'error',
                 'jest/valid-expect': 'off',
-                'vitest/hoisted-apis-on-top': 'error',
-                'vitest/no-conditional-tests': 'error',
                 'import/no-default-export': 'off',
             },
         },
