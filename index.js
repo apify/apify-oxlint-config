@@ -92,11 +92,21 @@ const sharedConfig = {
         //   would need a type parameter); opt-in per project if desired.
         // - consistent-each-for, warn-todo, require-local-test-context-for-
         //   concurrent-snapshots: opinion / niche.
+        // - valid-describe-callback: false-positive on the
+        //   `describe(name, options, fn)` API (e.g. `{ retry: 10 }`) — the
+        //   rule treats the options object as an invalid second argument.
+        // - valid-expect: misfires on chai-style assertions used by Cypress
+        //   (`expect(x).to.be.greaterThan(y)`); the vitest plugin has no
+        //   notion of chai's `.to.*` modifier chain. Cypress tests live in
+        //   the same workspaces as vitest tests, so file-glob scoping isn't
+        //   reliable — disable globally.
         'vitest/hoisted-apis-on-top': 'off',
         'vitest/require-mock-type-parameters': 'off',
         'vitest/consistent-each-for': 'off',
         'vitest/warn-todo': 'off',
         'vitest/require-local-test-context-for-concurrent-snapshots': 'off',
+        'vitest/valid-describe-callback': 'off',
+        'vitest/valid-expect': 'off',
         'typescript/unbound-method': 'off',
         'typescript/restrict-template-expressions': 'off',
         'typescript/no-useless-default-assignment': 'off',
