@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5 - 2026-04-28
+
+### Bug Fixes
+- Silence noisy vitest rules (valid-expect, valid-describe-callback) (#9)
+
+
 ## 0.2.4 - 2026-04-27
 
 ### Bug Fixes
