@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.6 - 2026-05-07
+
+### Bug Fixes
+- Turn off Jest plugin rules already covered by the Vitest plugin (#10)
+
+
 ## 0.2.5 - 2026-04-28
 
 ### Bug Fixes
