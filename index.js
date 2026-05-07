@@ -108,6 +108,9 @@ const sharedConfig = {
         //   notion of chai's `.to.*` modifier chain. Cypress tests live in
         //   the same workspaces as vitest tests, so file-glob scoping isn't
         //   reliable — disable globally.
+        // - require-to-throw-message: opinion (mirrors the already-disabled
+        //   `jest/require-to-throw-message`); fires hundreds of times in
+        //   existing test suites with no real signal.
         'vitest/hoisted-apis-on-top': 'off',
         'vitest/require-mock-type-parameters': 'off',
         'vitest/consistent-each-for': 'off',
@@ -115,6 +118,7 @@ const sharedConfig = {
         'vitest/require-local-test-context-for-concurrent-snapshots': 'off',
         'vitest/valid-describe-callback': 'off',
         'vitest/valid-expect': 'off',
+        'vitest/require-to-throw-message': 'off',
         'typescript/unbound-method': 'off',
         'typescript/restrict-template-expressions': 'off',
         'typescript/no-useless-default-assignment': 'off',
