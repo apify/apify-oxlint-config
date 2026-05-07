@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.7 - 2026-05-07
+
+### Bug Fixes
+- Own the OxlintConfig type alias so consumers don't trip TS2883 (#11)
+
+
 ## 0.2.6 - 2026-05-07
 
 ### Bug Fixes
