@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.9 - 2026-05-07
+
+### Bug Fixes
+- Disable some more Jest rules in favor of Vitest ones (#13)
+
+
 ## 0.2.8 - 2026-05-07
 
 ### Bug Fixes
