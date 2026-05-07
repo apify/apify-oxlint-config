@@ -83,6 +83,14 @@ const sharedConfig = {
         'unicorn/no-await-in-promise-methods': 'error',
         'jest/require-to-throw-message': 'off',
         'jest/prefer-snapshot-hint': 'off',
+        // Jest and vitest plugins have some overlapping rules.
+        // Disable the Jest ones and let the Vitest plugin handle them.
+        'jest/expect-expect': 'off',
+        'jest/no-standalone-expect': 'off',
+        'jest/valid-describe-callback': 'off',
+        'jest/valid-expect': 'off',
+        'jest/valid-expect-in-promise': 'off',
+        'jest/valid-title': 'off',
         // Vitest plugin auto-enables most of its rules at error level. Keep
         // the few that catch real bugs and turn the noisy/opinionated/buggy
         // ones off:
@@ -156,7 +164,6 @@ const sharedConfig = {
                 'jest/no-disabled-tests': 'error',
                 'jest/no-conditional-expect': 'error',
                 'jest/no-focused-tests': 'error',
-                'jest/valid-expect': 'off',
                 'import/no-default-export': 'off',
             },
         },
@@ -171,10 +178,6 @@ const sharedConfig = {
         {
             files: ['**/*.stories.{js,jsx,ts,tsx,mjs,cjs}'],
             rules: { 'no-console': 'off', 'import/no-default-export': 'off' },
-        },
-        {
-            files: ['**/integration_tests/**'],
-            rules: { 'jest/expect-expect': 'off' },
         },
     ],
 };
