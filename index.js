@@ -86,6 +86,9 @@ const sharedConfig = {
         // Jest and vitest plugins have some overlapping rules.
         // Disable the Jest ones and let the Vitest plugin handle them.
         'jest/expect-expect': 'off',
+        'jest/no-disabled-tests': 'error',
+        'jest/no-conditional-expect': 'error',
+        'jest/no-focused-tests': 'error',
         'jest/no-standalone-expect': 'off',
         'jest/valid-describe-callback': 'off',
         'jest/valid-expect': 'off',
@@ -165,9 +168,9 @@ const sharedConfig = {
                 'typescript/await-thenable': 'off',
                 'typescript/no-floating-promises': 'off',
                 'typescript/no-misused-promises': 'off',
-                'jest/no-disabled-tests': 'error',
-                'jest/no-conditional-expect': 'error',
-                'jest/no-focused-tests': 'error',
+                'vitest/no-disabled-tests': 'error',
+                'vitest/no-conditional-expect': 'error',
+                'vitest/no-focused-tests': 'error',
                 'import/no-default-export': 'off',
             },
         },
