@@ -1,4 +1,15 @@
-import type { OxlintConfig } from 'oxlint';
+import type { OxlintConfig as RawOxlintConfig } from 'oxlint';
+
+/**
+ * Re-aliased {@link RawOxlintConfig} owned by this package. Structurally
+ * identical to oxlint's `OxlintConfig`, but living in `@apify/oxlint-config`
+ * means TypeScript can write a portable name when emitting inferred types
+ * for consumer config files (`export default defineConfig({...})`) instead
+ * of chasing back to oxlint via pnpm's `.pnpm/...` resolved path — which
+ * trips TS2883 ("inferred type cannot be named portably") in IDEs and
+ * `--isolatedDeclarations` builds.
+ */
+export interface OxlintConfig extends RawOxlintConfig {}
 
 /**
  * Narrow {@link OxlintConfig} so the keys this preset always populates
@@ -19,9 +30,10 @@ export type ApifyOxlintConfig = OxlintConfig & {
  * everything else (`ignorePatterns`, `jsPlugins`, `categories`, …) is
  * passed through unchanged.
  *
- * Returns `OxlintConfig` (not the narrower `ApifyOxlintConfig`), which is
- * re-exported from oxlint, so default-exporting the result is safe under
- * `composite` / `--isolatedDeclarations` TypeScript projects.
+ * Returns this package's {@link OxlintConfig} alias rather than oxlint's
+ * raw type, so consumers can `export default defineConfig({...})` from a
+ * `composite` / `--isolatedDeclarations` TS project (or any IDE that runs
+ * the same checks) without TS2883.
  *
  *     import { defineConfig } from '@apify/oxlint-config';
  *
