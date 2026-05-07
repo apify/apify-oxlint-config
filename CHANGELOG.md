@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.8 - 2026-05-07
+
+### Bug Fixes
+- Disable vitest/require-to-throw-message (mirrors the jest variant) (#12)
+
+
 ## 0.2.7 - 2026-05-07
 
 ### Bug Fixes
