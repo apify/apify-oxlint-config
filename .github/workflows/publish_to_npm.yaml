@@ -42,12 +42,12 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install pnpm and dependencies
+        uses: apify/workflows/pnpm-install@v0.41.1
 
       - name: Bump version
         if: ${{ inputs.bump != 'none' }}
-        run: npm version ${{ inputs.bump }} --no-git-tag-version
+        run: pnpm version ${{ inputs.bump }} --no-git-tag-version
         
       - name: Get current version
         id: get_version
@@ -81,7 +81,7 @@ jobs:
           git tag -f "v${{ steps.get_version.outputs.VERSION }}"
 
       - name: Publish to NPM
-        run: npm publish
+        run: pnpm publish --no-git-checks
 
       - name: Push changes
         run: git push origin $(git rev-parse --abbrev-ref HEAD) --tags
