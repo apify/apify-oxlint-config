@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.10 - 2026-05-12
+
+### Chores
+- Migrate from npm to pnpm 11 (#14)
+- Disable `no-default-export` rule for Oxlint config files (#15)
+
+
 ## 0.2.9 - 2026-05-07
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
     "name": "@apify/oxlint-config",
-    "version": "0.2.9",
+    "version": "0.2.10",
     "description": "Apify oxlint preset to be shared between projects.",
     "repository": {
         "url": "https://github.com/apify/apify-oxlint-config"
