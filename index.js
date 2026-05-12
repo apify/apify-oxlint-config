@@ -178,6 +178,7 @@ const sharedConfig = {
             files: [
                 '**/vite.config*.{ts,mts,js,mjs}',
                 '**/vitest.config*.{ts,mts,js,mjs}',
+                '**/oxlint.config*.{ts,mts,js,mjs}',
                 '**/jest.config*.{js,mjs}',
             ],
             rules: { 'import/no-default-export': 'off' },
