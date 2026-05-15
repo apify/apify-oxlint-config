@@ -61,15 +61,11 @@ jobs:
         env:
           OUTPUT: CHANGELOG.md
 
-      - name: Stage release changes
-        run: |
-          git add -A
-
       - name: Commit release
         id: commit-release
-        uses: apify/workflows/commit@v0.44.0
+        uses: apify/actions/signed-commit@v1.0.0
         with:
-          commit-message: "chore(release): Release new version [skip ci]"
+          message: "chore(release): Release new version [skip ci]"
           github-token: ${{ secrets.APIFY_SERVICE_ACCOUNT_GITHUB_TOKEN }}
 
       - name: Publish to NPM
@@ -79,7 +75,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.APIFY_SERVICE_ACCOUNT_GITHUB_TOKEN }}
           TAG_NAME: "v${{ steps.get_version.outputs.VERSION }}"
-          COMMIT_SHA: ${{ steps.commit-release.outputs.commit-sha }}
+          COMMIT_SHA: ${{ steps.commit-release.outputs.commit_sha }}
         run: |
           gh api -X POST "repos/${GITHUB_REPOSITORY}/git/refs" \
             -f ref="refs/tags/${TAG_NAME}" \
