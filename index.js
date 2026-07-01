@@ -69,7 +69,14 @@ const sharedConfig = {
         'no-unused-vars': 'off',
         'typescript/no-unused-vars': [
             'error',
-            { argsIgnorePattern: '^_', ignoreRestSiblings: true },
+            {
+                argsIgnorePattern: '^_',
+                ignoreRestSiblings: true,
+                // Auto-remove unused imports on `--fix` (experimental option).
+                // `safe-fix` strips unused named/namespace/type imports while
+                // leaving side-effect imports and lone default imports intact.
+                fix: { imports: 'safe-fix', variables: 'off' },
+            },
         ],
         'typescript/no-empty-function': 'error',
         'no-empty-function': 'off',
