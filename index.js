@@ -69,7 +69,11 @@ const sharedConfig = {
         'no-unused-vars': 'off',
         'typescript/no-unused-vars': [
             'error',
-            { argsIgnorePattern: '^_', ignoreRestSiblings: true },
+            {
+                argsIgnorePattern: '^_',
+                ignoreRestSiblings: true,
+                fix: { imports: 'safe-fix', variables: 'off' },
+            },
         ],
         'typescript/no-empty-function': 'error',
         'no-empty-function': 'off',
