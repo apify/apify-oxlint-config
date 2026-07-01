@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0 - 2026-07-01
+
+### Features
+- Auto-remove unused imports on `--fix` (#19)
+
+### Chores
+- Use custom action to commit changes in CI instead of `git commit` (#16)
+- Replace calling reusable actions from `apify/workflows/...` to `apify/actions/...` [internal] (#17)
+- Update actions from `apify/actions` [internal] (#18)
+
+
 ## 0.2.10 - 2026-05-12
 
 ### Chores
