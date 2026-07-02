@@ -77,9 +77,12 @@ jobs:
           TAG_NAME: "v${{ steps.get_version.outputs.VERSION }}"
           COMMIT_SHA: ${{ steps.commit-release.outputs.commit_sha }}
         run: |
+          # `signed-commit` outputs an abbreviated SHA, but the git refs API
+          # requires the full 40-character SHA — expand it first.
+          FULL_SHA=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${COMMIT_SHA}" --jq '.sha')
           gh api -X POST "repos/${GITHUB_REPOSITORY}/git/refs" \
             -f ref="refs/tags/${TAG_NAME}" \
-            -f sha="${COMMIT_SHA}"
+            -f sha="${FULL_SHA}"
 
       # Generate release notes only from the current version
       - name: Generate changelog for release notes
