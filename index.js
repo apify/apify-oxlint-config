@@ -16,6 +16,7 @@ import { defineConfig as oxlintDefineConfig } from 'oxlint';
  *
  * The raw preset is still exported as the default if you want to spread
  * manually.
+ * @type {import('oxlint').OxlintConfig}
  */
 const sharedConfig = {
     plugins: ['typescript', 'import', 'unicorn', 'jest', 'vitest', 'promise'],
@@ -192,6 +193,9 @@ const sharedConfig = {
             rules: { 'no-console': 'off', 'import/no-default-export': 'off' },
         },
     ],
+    options: {
+        reportUnusedDisableDirectives: 'warn',
+    },
 };
 
 export default sharedConfig;
@@ -220,5 +224,8 @@ export function defineConfig(overrides = {}) {
             ? { ...sharedConfig.rules, ...overrides.rules }
             : sharedConfig.rules,
         env: overrides.env ? { ...sharedConfig.env, ...overrides.env } : sharedConfig.env,
+        options: overrides.options
+            ? { ...sharedConfig.options, ...overrides.options }
+            : sharedConfig.options,
     });
 }
