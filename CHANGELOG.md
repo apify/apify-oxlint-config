@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0 - 2026-11-19
+
+### Features
+- Warn on unused disable directives
+- Secure publishing workflow behind an environment
+
+### Chores
+- Raise dependency cooldown to 7 days (#22)
+- Lower the dependency cooldown back to 1 day (#23)
+
+
 ## 0.3.0 - 2026-07-01
 
 ### Features
