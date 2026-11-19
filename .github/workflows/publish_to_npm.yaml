@@ -87,12 +87,14 @@ jobs:
             -f ref="refs/tags/${TAG_NAME}" \
             -f sha="${FULL_SHA}"
 
-      # Generate release notes only from the current version
+      # Generate release notes only from the current version.
+      # The release commit and tag are created via the GitHub API, so they don't exist in the local checkout:
+      # use `--unreleased` (commits since the previous tag) instead of `--current` (which needs a tag on local HEAD).
       - name: Generate changelog for release notes
         id: git-cliff-release-notes
         uses: orhun/git-cliff-action@f50e11560dce63f7c33227798f90b924471a88b5 # v4.8.0
         with:
-          args: --tag "v${{ steps.get_version.outputs.VERSION }}" --current --strip all
+          args: --tag "v${{ steps.get_version.outputs.VERSION }}" --unreleased --strip all
       
       - name: Format release notes
         id: format-release-notes
