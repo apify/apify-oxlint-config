@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 - 2026-11-19
+
+### Bug Fixes
+- Correctly generate release notes
+
+
 ## 0.4.0 - 2026-11-19
 
 ### Features
